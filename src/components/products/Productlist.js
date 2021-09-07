@@ -2,7 +2,7 @@ import React from 'react'
 import { ProductImage ,ProductInfo,Producttitle,Producholder,Producprice} from './product.style'
 import {Link} from "react-router-dom"
 const Productlist=({id,image,title,price}) =>{
-    const detailpage=`/${id}`
+    const detailpage=`/products/${id}`
     return (
         <Link to={detailpage}>
         <Producholder>

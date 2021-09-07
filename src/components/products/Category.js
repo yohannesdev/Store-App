@@ -4,6 +4,9 @@ function Category({category}) {
  
     return (
         <div>
+            {/* <select>
+                <option onClick={()=>category("electronics")}>electronics</option>
+            </select> */}
             <h2>Category</h2>
             <p onClick={()=>category("electronics")}>electronics</p>
             <p onClick={()=>category("jewelery")}>jewelery</p>

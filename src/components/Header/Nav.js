@@ -10,6 +10,8 @@ color: white;
 justify-content:space-between;
 padding:20px;
 text-decoration:none;
+position: sticky;
+top:0;
 `
 const CartWrapper=styled.div`
 display:flex;
