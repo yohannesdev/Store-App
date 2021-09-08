@@ -19,7 +19,6 @@ function App() {
     <Route path="/Checkoutpage" exact component={Checkoutpage}/>
     <Route path="/products/:pid" exact component={Detailproductpage} ></Route>
     
-    {/* <Route path="/" component={Errorpage}/> */}
     </Switch>
      </Router>
   );

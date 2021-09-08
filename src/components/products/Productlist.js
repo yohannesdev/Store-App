@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 const Productlist=({id,image,title,price}) =>{
     const detailpage=`/products/${id}`
     return (
-        <Link to={detailpage}>
+        <Link to={detailpage} style={{textDecoration:"none"}}>
         <Producholder>
             <div>
                 <ProductImage src={image} alt={`image of ${title}`}></ProductImage>

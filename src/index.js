@@ -4,9 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Cartprovider from './context/Cartprovider';
+
 ReactDOM.render(
   <React.StrictMode>
+    <Cartprovider>
     <App />
+    </Cartprovider>
   </React.StrictMode>,
   document.getElementById('root')
 );

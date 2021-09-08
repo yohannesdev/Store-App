@@ -41,7 +41,7 @@ return(
     
    }
     {
-      products.map((product)=>(<Col md="4"><Productlist id={product.id} key={product.id} image={product.image} title={product.title} price={product.price}/></Col>))  
+      products.map((product)=>(<Col md="6"><Productlist id={product.id} key={product.id} image={product.image} title={product.title} price={product.price}/></Col>))  
     }     
      
         

@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from 'react'
 import { detailproducts } from '../../utils/products'
 import Detailproduct from './Detailproduct'
+import Productlist from './Productlist'
 
 const Detailproductpage=(props)=> {
     const[productId,setproductid]=useState(props.match.params.pid)
@@ -28,12 +29,14 @@ setloading(false)
    }
         {detailproduct && <Detailproduct 
            key={detailproduct.id} 
+           id={detailproduct.id}
            image={detailproduct.image} 
            title={detailproduct.title} 
            price={detailproduct.price}
            category={detailproduct.category}
            description={detailproduct.description}
            />}   
+           <Productlist/>
         </div>
     )
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import styled from 'styled-components'
 import { Link } from 'react-router-dom';
+import { CartState } from '../../context/Cartprovider';
 
 const Navwrapper=styled.div`
 background-color:black;
@@ -24,7 +25,8 @@ const H2=styled.h2`
 text-decoration:none;
 color:white;
 `
-function Nav(cart) {
+function Nav() {
+    const[{cart}]=CartState()
     return (
         <Navwrapper>
             <Link to='/' style={{textDecoration:"none"}} ><H2>The store</H2>
@@ -32,7 +34,7 @@ function Nav(cart) {
             
             <Link to="/cart" style={{textDecoration:"none"}} >
             <CartWrapper ><ShoppingCartIcon style={{ fontSize: 40 ,textDecoration:"none"}}/>
-<p style={{textDecoration:"none"}} >0</p></CartWrapper>
+<p style={{textDecoration:"none"}} >{cart.length}</p></CartWrapper>
 </Link>
         </Navwrapper>
     )
