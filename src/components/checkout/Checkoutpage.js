@@ -96,9 +96,9 @@ function Checkoutpage() {
             </div>
             {cart.map((product)=>(
                   
-                //   <div key={product.id} style={{display:"block"}}>
+                  <div key={product.id} >
                   <Productlist image={product.image} title={product.title} price={product.price} style={{width:"80px",fontSize:"15px",fontWeight:"300"}}/>
-                //   </div>
+                  </div>
                   
                   ))
                   }

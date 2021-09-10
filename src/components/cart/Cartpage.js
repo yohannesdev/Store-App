@@ -69,7 +69,7 @@ function Cartpage() {
               {cart.map((product)=>(
                   
                   <Div key={product.id}>
-                  <Productlist image={product.image} title={product.title} price={product.price}/>
+                  <Productlist id={product.id} image={product.image} title={product.title} price={product.price}/>
                   <QuantityHolder >
                       <div style={{display:"flex",justifyContent:"space-between"}}>
             <h4>Quantity     </h4>
