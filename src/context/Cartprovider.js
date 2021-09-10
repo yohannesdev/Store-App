@@ -1,20 +1,59 @@
 import React, { createContext, useContext, useReducer } from 'react';
 export const CartContext=createContext();
 export const CartState=()=>useContext(CartContext)
+
  const initialState = {
-    cart: []
+     cart: []
   };
   
   const reducer=(state,action)=>{
+    // console.log(cart.find(id=>id==action.item.id)) 
+    
     switch (action.type) {
         case 'ADD_TO_CART':
           return {
             ...state,
           cart: [...state.cart, action.item],
           };
-  }
+          case 'REMOVE_CART':
+            const index3 = state.cart.findIndex(
+                (Item) => Item.id === action.id
+              );
+              let newcart3 = [...state.cart];
+        newcart3.splice(index3, 1);
+            return {
+                ...state,
+                cart: newcart3,
+              };
+          case 'ADD_QUANTITY':
+            const index = state.cart.findIndex(
+              (Item) => Item.id === action.id
+            );
+            let newcart = [...state.cart];
+      console.log(newcart[index].quantity)
+      newcart[index].quantity=newcart[index].quantity+1;
+    console.log(newcart)
+    console.log(newcart[index])
+      console.log(`quantity ${newcart[index].quantity}`)
+   
+            return {
+               cart: newcart,
+              };
+              case 'REDUCE_QUANTITY':
+                const index2 = state.cart.findIndex(
+                  (Item) => Item.id === action.id
+                );
+                let newcart2 = [...state.cart];
+                if(newcart2[index2].quantity>1){
+           newcart2[index2].quantity=newcart2[index2].quantity-1;}
+         return {
+                   cart: newcart2,
+                  };
+                  default:
+        return state;
+             }
 }
-console.log(initialState.cart)
+
 const Cartprovider=({children})=> {
     return (
         <div>

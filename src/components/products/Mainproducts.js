@@ -18,7 +18,7 @@ const Mainproducts=()=>{
            
         },[]
     )
-    console.log(products)
+    // console.log(products)
     const searchBycategory=(category)=>{
         setProducts([])
         setloading(true)
@@ -30,7 +30,7 @@ productsByCategory(category).then((res)=>{
             setloading(true)
         })
     }
-    console.log(loading)
+    // console.log(loading)
 return(
     <Container>
         <Category category={searchBycategory}/>

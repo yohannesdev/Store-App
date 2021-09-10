@@ -1,9 +1,9 @@
 import React,{useState} from 'react'
 import Modalcomponent from './Modalcomponent'
 import { Modal ,Button} from 'react-bootstrap';
-
 import styled from 'styled-components';
 import Productlist from '../products/Productlist';
+import { CartState } from '../../context/Cartprovider';
 const Input=styled.input`
 border: none;
 width:300px;
@@ -42,6 +42,7 @@ const Infoholder=styled.div`
 display:flex;
 `
 function Checkoutpage() {
+    const[{cart},dispatch]=CartState()
     const [modalShow, setModalShow] = useState(false);
     const[formstate,setFormstate]= useState ({
         firstname: '',
@@ -78,11 +79,13 @@ function Checkoutpage() {
     }
     console.log(formstate)
     console.log(info)
+   
     return (
         <CheckOutHolder>
             <h1>Review your order</h1>
             <Infoholder>
-                <div><Productlist/></div>
+           
+                {/* <div><Productlist/></div> */}
                 <div>
             <Information>Shiping information</Information>
           { shipinginfo && <Address>{shipinginfo.firstname }{shipinginfo.lastname } <br/> {shipinginfo.address } <br/> {shipinginfo.city }{shipinginfo.state } {shipinginfo.zipcode }</Address>}
@@ -91,8 +94,17 @@ function Checkoutpage() {
          { billinginfo && <Address>{billinginfo.firstname }{billinginfo.lastname } <br/> {billinginfo.address } <br/> {billinginfo.city }{billinginfo.state } {billinginfo.zipcode }</Address>} 
             { ! billinginfo &&<AddInformation onClick={() => {setModalShow(true);setInfo("billing")}}>add Billing address</AddInformation>}
             </div>
+            {cart.map((product)=>(
+                  
+                //   <div key={product.id} style={{display:"block"}}>
+                  <Productlist image={product.image} title={product.title} price={product.price} style={{width:"80px",fontSize:"15px",fontWeight:"300"}}/>
+                //   </div>
+                  
+                  ))
+                  }
+                  
            <Modalcomponent show={modalShow}
-        onHide={() => setModalShow(false)}>
+        onHide={() => setModalShow(false)} >
  
       <form onSubmit={handleSubmit}>
                 <Input onChange={handleInputChange}  name="firstname" value={formstate.firstname} placeholder="First Name"></Input>

@@ -13,11 +13,13 @@ function App() {
     <Router>
       <Nav/>
       <Switch>
-    <Route path="/" exact component={Mainproducts}></Route>
-    <Route path="/products" exact component={Mainproducts}></Route>
+    <Route path="/" exact component={Mainproducts}/>
+    <Route path="/products" exact component={Mainproducts}/>
+    <Route path="/products/:pid" exact component={Detailproductpage} />
     <Route path="/cart" exact component={Cartpage}/>
+    
     <Route path="/Checkoutpage" exact component={Checkoutpage}/>
-    <Route path="/products/:pid" exact component={Detailproductpage} ></Route>
+    
     
     </Switch>
      </Router>
