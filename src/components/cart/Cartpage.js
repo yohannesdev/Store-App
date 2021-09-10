@@ -42,7 +42,6 @@ function Cartpage() {
     // },[cart])
    
     const AddQuantity=(id)=>{
-        const num=id;
         dispatch({
             type: "ADD_QUANTITY",
              id: id,   

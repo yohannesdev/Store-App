@@ -30,13 +30,13 @@ export const CartState=()=>useContext(CartContext)
               (Item) => Item.id === action.id
             );
             let newcart = [...state.cart];
-      console.log(newcart[index].quantity)
       newcart[index].quantity=newcart[index].quantity+1;
-    console.log(newcart)
-    console.log(newcart[index])
+    // console.log(newcart)
+    // console.log(newcart[index])
       console.log(`quantity ${newcart[index].quantity}`)
    
             return {
+                ...state,
                cart: newcart,
               };
               case 'REDUCE_QUANTITY':
@@ -47,6 +47,7 @@ export const CartState=()=>useContext(CartContext)
                 if(newcart2[index2].quantity>1){
            newcart2[index2].quantity=newcart2[index2].quantity-1;}
          return {
+            ...state,
                    cart: newcart2,
                   };
                   default:
