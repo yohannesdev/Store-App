@@ -4,6 +4,8 @@ import { Modal ,Button} from 'react-bootstrap';
 import styled from 'styled-components';
 import Productlist from '../products/Productlist';
 import { CartState } from '../../context/Cartprovider';
+import Summary from './Summary';
+import { Link } from 'react-router-dom';
 const Input=styled.input`
 border: none;
 width:300px;
@@ -26,6 +28,9 @@ padding:0;
 `
 const CheckOutHolder=styled.div`
 padding:20px;
+width: 1200px;
+margin: 0 auto;
+/* background-color:red; */
 `
 const Information=styled.div`
 font-size:25px;
@@ -40,6 +45,20 @@ color:blue;
 `
 const Infoholder=styled.div`
 display:flex;
+justify-content: space-around;
+`
+const Order=styled.div`
+width: 200px;
+height:50px;
+font-size:25px;
+background-color:lightpink;
+text-align: center;
+font-weight:400;
+color: black;
+font-weight:600;
+padding:5px;
+border-radius:5px;
+
 `
 function Checkoutpage() {
     const[{cart},dispatch]=CartState()
@@ -77,16 +96,22 @@ function Checkoutpage() {
         zipcode: '',})
         setModalShow(false)
     }
+    const Emptycart=()=>{
+        dispatch({
+            type:"EMPTY_CART"}
+        )
+    }
     console.log(formstate)
     console.log(info)
    
-    return (
+    return (<>
+    
         <CheckOutHolder>
-            <h1>Review your order</h1>
+           <h1>Review your order</h1> 
             <Infoholder>
            
                 {/* <div><Productlist/></div> */}
-                <div>
+                <div style={{margin:"70px 0 0 40px"}}>
             <Information>Shiping information</Information>
           { shipinginfo && <Address>{shipinginfo.firstname }{shipinginfo.lastname } <br/> {shipinginfo.address } <br/> {shipinginfo.city }{shipinginfo.state } {shipinginfo.zipcode }</Address>}
             { ! shipinginfo &&<AddInformation onClick={() => {setModalShow(true);setInfo("shiping")}}>add shiping address</AddInformation>}
@@ -94,15 +119,22 @@ function Checkoutpage() {
          { billinginfo && <Address>{billinginfo.firstname }{billinginfo.lastname } <br/> {billinginfo.address } <br/> {billinginfo.city }{billinginfo.state } {billinginfo.zipcode }</Address>} 
             { ! billinginfo &&<AddInformation onClick={() => {setModalShow(true);setInfo("billing")}}>add Billing address</AddInformation>}
             </div>
+            <div>
             {cart.map((product)=>(
                   
                   <div key={product.id} >
-                  <Productlist image={product.image} title={product.title} price={product.price} style={{width:"80px",fontSize:"15px",fontWeight:"300"}}/>
+                  <Productlist image={product.image} title={product.title} price={product.price} style={{width:"100px",fontSize:"15px",fontWeight:"300"}}/>
                   </div>
                   
                   ))
                   }
                   
+                  </div>
+                  <div style={{margin:"70px 0 0 40px"}}>
+                  <Summary hide/>
+                  <Link to="/products" style={{textDecoration:"none",color:"black"}}>
+                  <Order onClick={Emptycart}>Place Order</Order></Link>
+                  </div>
            <Modalcomponent show={modalShow}
         onHide={() => setModalShow(false)} >
  
@@ -121,6 +153,7 @@ function Checkoutpage() {
 </Infoholder>
     
         </CheckOutHolder>
+        </>
     )
 }
 

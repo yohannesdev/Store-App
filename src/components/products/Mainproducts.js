@@ -30,10 +30,26 @@ productsByCategory(category).then((res)=>{
             setloading(true)
         })
     }
-    // console.log(loading)
+   const SortAsce=(a)=>{
+       if (a=="a-z"){
+           return  products.sort((a, b) => (a.title > b.title ? 1 : -1))
+       }
+       else if(a=="z-a"){
+return products.sort((a, b) => (a.title < b.title ? 1 : -1))
+       }
+   else if (a=="lowest"){
+       return   products.sort((a, b) => (a.price > b.price ? 1 : -1))
+   }
+   else if(a=="highest"){
+    return   products.sort((a, b) => (a.price < b.price ? 1 : -1))
+   }
+   }
+   
 return(
+    <div >
+        <Category category={searchBycategory} sortasce={SortAsce} />
     <Container>
-        <Category category={searchBycategory}/>
+        
     <Row >
         
    {loading &&
@@ -46,7 +62,7 @@ return(
      
         
 
-    </Row></Container>
+    </Row></Container></div>
 )
 }
 export default Mainproducts

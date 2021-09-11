@@ -29,7 +29,7 @@ export const CartState=()=>useContext(CartContext)
             const index = state.cart.findIndex(
               (Item) => Item.id === action.id
             );
-            let newcart = [...state.cart];
+            let newcart = state.cart.map(item => ({ ...item }))
       newcart[index].quantity=newcart[index].quantity+1;
     // console.log(newcart)
     // console.log(newcart[index])
@@ -43,13 +43,18 @@ export const CartState=()=>useContext(CartContext)
                 const index2 = state.cart.findIndex(
                   (Item) => Item.id === action.id
                 );
-                let newcart2 = [...state.cart];
+                let newcart2 = state.cart.map(item => ({ ...item }))
                 if(newcart2[index2].quantity>1){
            newcart2[index2].quantity=newcart2[index2].quantity-1;}
          return {
             ...state,
                    cart: newcart2,
                   };
+                  case 'EMPTY_CART':
+                      return {
+                          ...state,
+                          cart:[]
+                      }
                   default:
         return state;
              }

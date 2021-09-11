@@ -1,7 +1,7 @@
 import React from 'react'
 import { ProductImage ,ProductInfo,Producttitle,Producholder,Producprice} from './product.style'
 import {Link,Redirect} from "react-router-dom"
-const Productlist=({id,image,title,price,style}) =>{
+const Productlist=({id,image,title,price,style,styleinfo}) =>{
     const detailpage=`/products/${id}`
     return (
         <Link to={detailpage} style={{textDecoration:"none"}}>
@@ -9,7 +9,7 @@ const Productlist=({id,image,title,price,style}) =>{
             <div>
                 <ProductImage style={style} src={image} alt={`image of ${title}`}></ProductImage>
             </div>
-            <ProductInfo ><Producttitle style={style} >{title}</Producttitle>
+            <ProductInfo style={styleinfo} ><Producttitle style={style} >{title}</Producttitle>
             <Producprice style={style} >${price}</Producprice></ProductInfo>
             
         </Producholder>

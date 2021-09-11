@@ -23,10 +23,15 @@ color:white;
 `
 const H2=styled.h2`
 text-decoration:none;
-color:white;
+color:lightpink;
 `
 function Nav() {
     const[{cart}]=CartState()
+    const Totalprice = (cart) =>
+    {
+      return  cart?.reduce((amount, item) => item.quantity + amount, 0);  
+    }
+    const cartamount=Totalprice(cart)
     return (
         <Navwrapper>
             <Link to='/' style={{textDecoration:"none"}} ><H2>The store</H2>
@@ -34,7 +39,7 @@ function Nav() {
             
             <Link to="/cart" style={{textDecoration:"none"}} >
             <CartWrapper ><ShoppingCartIcon style={{ fontSize: 40 ,textDecoration:"none"}}/>
-<p style={{textDecoration:"none"}} >{cart.length}</p></CartWrapper>
+<p style={{textDecoration:"none"}} >{cartamount}</p></CartWrapper>
 </Link>
         </Navwrapper>
     )

@@ -7,14 +7,15 @@ const CheckOut=styled.div`
 width: 200px;
 height:50px;
 font-size:25px;
-background-color:chocolate;
+background-color:lightpink;
 text-align: center;
 font-weight:400;
 color: black;
 font-weight:600;
 padding:5px;
+border-radius:5px;
 `
-function Summary({}) {
+function Summary({hide}) {
     const [{cart}]=CartState()
     const Totalprice = (cart) =>
     {
@@ -30,7 +31,7 @@ function Summary({}) {
             <p>Tax: ${tax}</p>
     <h4>Total:   {total}</h4>
 <Link to="/Checkoutpage" style={{textDecoration:"none"}}>
-    <CheckOut>Check Out</CheckOut>
+    { !hide &&<CheckOut>Check Out</CheckOut>}
     </Link>
         </div>
     )

@@ -7,14 +7,17 @@ import Detailproductpage from './components/products/Detailproductpage';
 import Main from './components/Main';
 import Cartpage from './components/cart/Cartpage';
 import Checkoutpage from './components/checkout/Checkoutpage';
+import Home from './components/home/Home';
+import Explore from './components/products/Explore';
 
 function App() {
   return (
     <Router>
       <Nav/>
       <Switch>
-    <Route path="/" exact component={Mainproducts}/>
+    <Route path="/" exact component={Home}/>
     <Route path="/products" exact component={Mainproducts}/>
+    <Route path="/explore" exact component={Explore}/>
     <Route path="/products/:pid" exact component={Detailproductpage} />
     <Route path="/cart" exact component={Cartpage}/>
     

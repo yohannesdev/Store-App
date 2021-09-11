@@ -9,7 +9,7 @@ const ProductImage=styled.img`
 width: 400px;
 `
 const ProductInfo=styled.div`
-padding:70px;
+padding:100px;
 flex-grow: 1;
 `
 const Producttitle=styled.p`
@@ -32,11 +32,12 @@ margin-top:15px;
 `
 const Cart=styled.div`
 font-size:25px;
-background-color: chocolate;
+background-color: lightpink;
 width: 250px;
 padding:10px;
 font-weight:500;
 text-align:center;
+border-radius:5px;
 `
 const Detailholder=styled.div`
 padding:60px;
