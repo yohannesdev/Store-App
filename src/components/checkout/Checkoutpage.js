@@ -6,6 +6,8 @@ import Productlist from '../products/Productlist';
 import { CartState } from '../../context/Cartprovider';
 import Summary from './Summary';
 import { Link } from 'react-router-dom';
+import Cards from 'react-credit-cards';
+import 'react-credit-cards/es/styles-compiled.css';
 const Input=styled.input`
 border: none;
 width:300px;
@@ -16,7 +18,7 @@ font-size:20px;
 display:block;
 `
 const SaveBttn=styled.button`
-background-color:gray;
+background-color:lightskyblue;
 width:150px;
 margin: 20px auto;
 padding:15px;
@@ -28,14 +30,14 @@ padding:0;
 `
 const CheckOutHolder=styled.div`
 padding:20px;
-width: 1200px;
+width: 1400px;
 margin: 0 auto;
 /* background-color:red; */
 `
 const Information=styled.div`
 font-size:25px;
 font-weight:500;
-margin:30px 0 0;
+margin:30px 0 20px;
 `
 const AddInformation=styled.p`
 color:blue;
@@ -63,6 +65,7 @@ border-radius:5px;
 function Checkoutpage() {
     const[{cart},dispatch]=CartState()
     const [modalShow, setModalShow] = useState(false);
+    const [creditmodalShow, setCreditmodalShow] = useState(false);
     const[formstate,setFormstate]= useState ({
         firstname: '',
         lastname: '',
@@ -73,7 +76,30 @@ function Checkoutpage() {
     });
     const[billinginfo,setBillinginfo]=useState(false)
     const[shipinginfo,setshipinginfo]=useState(false)
-    const [info,setInfo]=useState("")
+    const[info,setInfo]=useState(false)
+    const[creditcard,setcreditcard]=useState(false)
+    const [creditinfo,setCreditinfo]=useState({
+        cvc: '',
+        expiry: '',
+        focus: '',
+        name: '',
+        number: '',
+      })
+    
+     
+    const  handleInputFocus = (e) => {
+        setCreditinfo((prev)=>{
+            return{...prev,focus:e.target.name}
+        })
+        // setInfo({ focus: e.target.name });
+      }
+      
+      const  handlecreditInputChange = (e) => {
+        const { name, value } = e.target;
+        setCreditinfo((prev)=>{
+            return{...prev,[name]:value}
+        })
+      }
     const handleInputChange=(event)=>{
         const {name,value}=event.target
         setFormstate((prev)=>{
@@ -96,29 +122,87 @@ function Checkoutpage() {
         zipcode: '',})
         setModalShow(false)
     }
+    const HandleCardsubmmit=(event)=>{
+        event.preventDefault() 
+        setcreditcard(true) 
+        setCreditmodalShow(false)
+    }
     const Emptycart=()=>{
+        alert("Your Order Has Submitted")
         dispatch({
             type:"EMPTY_CART"}
         )
     }
-    console.log(formstate)
-    console.log(info)
+    // console.log(formstate)
+    // console.log(info)
    
     return (<>
     
         <CheckOutHolder>
            <h1>Review your order</h1> 
             <Infoholder>
-           
-                {/* <div><Productlist/></div> */}
-                <div style={{margin:"70px 0 0 40px"}}>
+                <div style={{margin:"50px 0 0 40px"}}>
             <Information>Shiping information</Information>
           { shipinginfo && <Address>{shipinginfo.firstname }{shipinginfo.lastname } <br/> {shipinginfo.address } <br/> {shipinginfo.city }{shipinginfo.state } {shipinginfo.zipcode }</Address>}
-            { ! shipinginfo &&<AddInformation onClick={() => {setModalShow(true);setInfo("shiping")}}>add shiping address</AddInformation>}
+            <AddInformation onClick={() => {setModalShow(true);setInfo("shiping")}}>Add New shiping address</AddInformation>
             <Information>Billing information</Information>
          { billinginfo && <Address>{billinginfo.firstname }{billinginfo.lastname } <br/> {billinginfo.address } <br/> {billinginfo.city }{billinginfo.state } {billinginfo.zipcode }</Address>} 
-            { ! billinginfo &&<AddInformation onClick={() => {setModalShow(true);setInfo("billing")}}>add Billing address</AddInformation>}
-            </div>
+            <AddInformation onClick={() => {setModalShow(true);setInfo("billing")}}>Add New Billing address</AddInformation>
+         
+            <Modalcomponent show={creditmodalShow}
+        onHide={() => setCreditmodalShow(false)}>
+            <div id="PaymentForm">
+        <Cards
+          cvc={creditinfo.cvc}
+          expiry={creditinfo.expiry}
+          focused={creditinfo.focus}
+          name={creditinfo.name}
+          number={creditinfo.number}
+        />
+        <form onSubmit={HandleCardsubmmit}>
+        	<Input
+           type="number"
+            name="number"
+            value={creditinfo.number}
+            placeholder="Card Number"
+            onChange={handlecreditInputChange}
+            onFocus={handleInputFocus}
+            required
+          />
+          <Input
+            type="text"
+            name="name"
+            placeholder="Name"
+            onChange={handlecreditInputChange}
+            onFocus={handleInputFocus}
+          />
+          <Input
+            type="number"
+            name="expiry"
+            placeholder="Valid Thru"
+            onChange={handlecreditInputChange}
+            onFocus={handleInputFocus}
+          />
+           <Input
+            type="number"
+            name="CVC"
+            placeholder="CVC"
+            onChange={handlecreditInputChange}
+            onFocus={handleInputFocus}
+          />
+          <SaveBttn type="submit">Submiit</SaveBttn>
+        </form>
+      </div></Modalcomponent>
+            </div><div style={{margin:"50px 0 0 40px"}}>
+            <Information>Payment Method</Information>
+          <AddInformation onClick={() => {setCreditmodalShow(true);}}>Add New Payment Method</AddInformation>
+         { creditcard && <Cards
+          cvc={creditinfo.cvc}
+          expiry={creditinfo.expiry}
+          focused={creditinfo.focus}
+          name={creditinfo.name}
+          number={creditinfo.number}
+        />}</div>
             <div>
             {cart.map((product)=>(
                   
@@ -139,7 +223,7 @@ function Checkoutpage() {
         onHide={() => setModalShow(false)} >
  
       <form onSubmit={handleSubmit}>
-                <Input onChange={handleInputChange}  name="firstname" value={formstate.firstname} placeholder="First Name"></Input>
+                <Input onChange={handleInputChange}  name="firstname" value={formstate.firstname} placeholder="First Name" ></Input>
                 <Input onChange={handleInputChange} name="lastname" value={formstate.lastname} placeholder="Last Name"></Input>
                 <Input onChange={handleInputChange}  name="address" value={formstate.address} placeholder="Address"></Input>
                 <Input onChange={handleInputChange} name="city" value={formstate.city} placeholder="city"></Input>

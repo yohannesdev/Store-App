@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from'styled-components'
-import { Link } from 'react-router-dom';
+import { Link,useHistory } from 'react-router-dom';
 import { CartState } from '../../context/Cartprovider';
+import { AuthState } from '../../context/AuthProvider';
 
 const CheckOut=styled.div`
 width: 200px;
@@ -16,7 +17,9 @@ padding:5px;
 border-radius:5px;
 `
 function Summary({hide}) {
+    const history=useHistory()
     const [{cart}]=CartState()
+    const [{user}]=AuthState()
     const Totalprice = (cart) =>
     {
       return  cart?.reduce((amount, item) => item.price*item.quantity + amount, 0);  
@@ -30,8 +33,8 @@ function Summary({hide}) {
             <p>Sub total price: ${Totalprice(cart)}</p>
             <p>Tax: ${tax}</p>
     <h4>Total:   {total}</h4>
-<Link to="/Checkoutpage" style={{textDecoration:"none"}}>
-    { !hide &&<CheckOut>Check Out</CheckOut>}
+<Link to={!user && '/login'} style={{textDecoration:"none"}}>
+    { !hide&&<CheckOut onClick={(e) => history.push('/checkoutpage')}>Check Out</CheckOut>}
     </Link>
         </div>
     )

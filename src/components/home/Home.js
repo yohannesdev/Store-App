@@ -10,7 +10,7 @@ margin-top:50px;
 width:500px;
 `
 const Shop=styled.div`
-padding:50px 20px 50px 200px;
+padding:50px 20px 250px 200px;
 display: flex;
 text-decoration:none;
 color:black;
