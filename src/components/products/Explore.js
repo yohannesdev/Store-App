@@ -17,7 +17,7 @@ function Explore() {
         },[]
     )
     return (
-        <div style={{width:"1000px",height:"500px",margin:"0 auto"}} >
+        <div style={{width:"1000px",margin:"0 auto"}} >
         <Row>
             {
       products.map((product)=>(<Col md="2"><Productlist id={product.id} key={product.id} image={product.image} style={{width:"100px"}} styleinfo={{width:"5px",display:"none",backgroundColor:"red"}}/></Col>))  

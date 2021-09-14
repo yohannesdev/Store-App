@@ -8,6 +8,7 @@ const Mainproducts=()=>{
     const[products,setProducts]=useState([])
     const[loading,setloading]=useState(true)
     const[error,seterror]=useState(false)
+    const[notfound,setnotfound]=useState(false)
     const[searchcategory,setsearchcategory]=useState("")
     useEffect(
         ()=>{
@@ -15,7 +16,9 @@ const Mainproducts=()=>{
                setProducts(product)
                setloading(false)
         }).catch((err)=>{
-            setloading(true)
+            setloading(false)
+            seterror(false)
+            seterror(true)
         })
            
         },[]
@@ -27,8 +30,10 @@ const Mainproducts=()=>{
 productsByCategory(category).then((res)=>{
             setProducts(res)
             setloading(false)
+            seterror(false)
         }
         ).catch((err)=>{
+            setloading(false)
             seterror(true)
         })
     }
@@ -46,7 +51,7 @@ return products.sort((a, b) => (a.title < b.title ? 1 : -1))
     return   products.sort((a, b) => (a.price < b.price ? 1 : -1))
    }
    }
-   console.log(products)
+   console.log(error)
 return(
     <div >
         <Category category={searchBycategory} sortasce={SortAsce} />
@@ -61,9 +66,11 @@ return(
         
    {loading &&
    <h1>loading...</h1>
-    
-   }
-  {products.length==0 && !loading && <h1>Items not found</h1>}
+    }
+     {error &&
+   <h1> Something went wrong please try again</h1>
+    }
+  {products.length==0 && !loading && !error &&<h1>Items not found</h1>}
     {
       products.map((product)=>(<Col md="6"><Productlist id={product.id} key={product.id} image={product.image} title={product.title} price={product.price}/></Col>))  
     }     
