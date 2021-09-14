@@ -55,7 +55,7 @@ return products.sort((a, b) => (a.title < b.title ? 1 : -1))
 return(
     <div >
         <Category category={searchBycategory} sortasce={SortAsce} />
-        <div style={{margin:"10px 10px",position:"fixed",top:"20px",right:"210px"}} >
+        <div style={{margin:"10px 10px",position:"fixed",top:"20px",right:"300px"}} >
 <input onChange={(event)=>setsearchcategory(event.target.value)} type="text" >
 </input>
 <SearchIcon style={{color:"white"}} onClick={()=>searchBycategory(searchcategory)} />
