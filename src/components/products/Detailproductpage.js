@@ -9,11 +9,21 @@ const Detailproductpage=(props)=> {
     const[detailproduct,setdetailproduct]=useState(false)
     const[loading,setloading]=useState(true)
     const{pid}=useParams()
-    console.log("pid "+pid)
+    // console.log("pid "+pid)
     useEffect(
         ()=>{
-            detailproducts(pid).then((product)=>{
-setdetailproduct(product)
+            // detailproducts(pid)
+            fetch("/product.json").then((res)=>res.json())
+            .then((product)=>{
+// setdetailproduct(product)
+const productList=product.products;
+
+const singleProduct = productList.filter(
+    (x) => x.id ==pid
+  );
+  console.log(singleProduct)
+  setdetailproduct(singleProduct)
+  console.log(detailproduct)
 setloading(false)
 
  }
@@ -33,13 +43,13 @@ setloading(false)
    }
    <div style={{display:"flex"}}>
         {detailproduct && <Detailproduct 
-           key={detailproduct.id} 
-           id={detailproduct.id}
-           image={detailproduct.image} 
-           title={detailproduct.title} 
-           price={detailproduct.price}
-           category={detailproduct.category}
-           description={detailproduct.description}
+           key={detailproduct[0].id} 
+           id={detailproduct[0].id}
+           image={detailproduct[0].image} 
+           title={detailproduct[0].title} 
+           price={detailproduct[0].price}
+           category={detailproduct[0].category}
+           description={detailproduct[0].description}
            
            />}  
          

@@ -12,9 +12,12 @@ const Mainproducts=()=>{
     const[searchcategory,setsearchcategory]=useState("")
     useEffect(
         ()=>{
-           getallproducts().then((product)=>{
-               setProducts(product)
+        //    getallproducts()
+           fetch("/product.json").then((res)=>res.json())
+           .then((product)=>{
+               setProducts(product.products)
                setloading(false)
+               seterror(false)
         }).catch((err)=>{
             setloading(false)
             seterror(false)
@@ -27,6 +30,7 @@ const Mainproducts=()=>{
     const searchBycategory=(category)=>{
         setProducts([])
         setloading(true)
+        seterror(false)
 productsByCategory(category).then((res)=>{
             setProducts(res)
             setloading(false)

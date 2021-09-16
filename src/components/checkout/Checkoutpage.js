@@ -96,9 +96,11 @@ function Checkoutpage() {
       
       const  handlecreditInputChange = (e) => {
         const { name, value } = e.target;
+        // if(creditinfo.number.length<19){
         setCreditinfo((prev)=>{
             return{...prev,[name]:value}
         })
+      // }
       }
     const handleInputChange=(event)=>{
         const {name,value}=event.target
@@ -133,6 +135,9 @@ function Checkoutpage() {
             type:"EMPTY_CART"}
         )
     }
+    const shownNumber=creditinfo.number?.slice(-4);
+    const maskedNumber = shownNumber?.padStart(creditinfo.number.length, '*');
+    
     // console.log(formstate)
     // console.log(info)
    
@@ -201,7 +206,8 @@ function Checkoutpage() {
           expiry={creditinfo.expiry}
           focused={creditinfo.focus}
           name={creditinfo.name}
-          number={creditinfo.number}
+          number={maskedNumber}
+          preview={true}
         />}</div>
             <div>
             {cart.map((product)=>(

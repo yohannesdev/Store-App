@@ -2,6 +2,7 @@ import React from 'react'
 import Nav from '../Header/Nav'
 import styled from'styled-components'
 import { Link } from 'react-router-dom'
+import img from "../../Image/shop.jpg"
 const Div=styled.div`
 margin:0 200px 0 0;
 `

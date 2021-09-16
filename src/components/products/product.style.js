@@ -12,8 +12,8 @@ export const Producholder=styled.div`
 display: flex;
 margin: 50px;
 width:650px;
-&:hover{
-transform: scale(1.05);}
+/* &:hover{
+transform: scale(1.05);} */
 /* box-shadow: 0 6px 18px -9px rgba(0, 0, 0, 0.75); */
 
 `

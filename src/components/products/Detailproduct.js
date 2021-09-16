@@ -75,8 +75,17 @@ exist ??  dispatch({
 //    console.log(cart)
     useEffect(
         ()=>{
-            productsByCategory(category).then((product)=>{
-               setProducts(product)
+            // productsByCategory(category)
+            fetch("/product.json").then((res)=>res.json())
+            .then((product)=>{
+                const productList=product.products;
+
+const singleProduct = productList.filter(
+    (x) => x.category ==category
+  );
+  console.log(singleProduct)
+  setProducts(singleProduct)
+            //    setProducts(product)
                
         })
            
