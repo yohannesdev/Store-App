@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import SearchIcon from "@material-ui/icons/Search";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { CartState } from "../../context/Cartprovider";
@@ -35,7 +34,7 @@ const Signwrapper = styled.div`
 `;
 const H2 = styled.h2`
   text-decoration: none;
-  color: #8aa85d;
+  color: #ff9999;
 `;
 function Nav() {
   const [{ user }, dispatch] = AuthState();
@@ -57,14 +56,6 @@ function Nav() {
       </Link>
 
       <Signwrapper>
-        <Link to={!user && "/login"} style={{ textDecoration: "none" }}>
-          <Sign onClick={handleAuthenticaton}>
-            <div style={{ fontSize: "15px" }}>
-              Hello {!user ? "Guest" : user.email}
-            </div>
-            <span>{user ? "Sign Out" : "Sign In"}</span>
-          </Sign>
-        </Link>
         <Link to="/cart" style={{ textDecoration: "none" }}>
           <CartWrapper>
             <ShoppingCartIcon

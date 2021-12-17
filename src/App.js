@@ -7,8 +7,6 @@ import Detailproductpage from "./components/products/Detailproductpage";
 import Cartpage from "./components/cart/Cartpage";
 import Checkoutpage from "./components/checkout/Checkoutpage";
 import Home from "./components/home/Home";
-import Explore from "./components/products/Explore";
-import Login from "./components/auth/Login";
 import Footer from "./components/footer/Footer";
 
 function App() {
@@ -18,11 +16,9 @@ function App() {
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/products" exact component={Mainproducts} />
-        <Route path="/explore" exact component={Explore} />
-        <Route path="/login" exact component={Login} />
         <Route path="/products/:pid" exact component={Detailproductpage} />
-        <Route path="/cart" exact component={Cartpage} />
-        <Route path="/Checkoutpage" exact component={Checkoutpage} />
+        {/* <Route path="/cart" exact component={Cartpage} /> */}
+        {/* <Route path="/Checkoutpage" exact component={Checkoutpage} /> */}
       </Switch>
       <Footer />
     </Router>

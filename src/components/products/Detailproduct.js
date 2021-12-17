@@ -66,7 +66,7 @@ const Detailproduct = ({
     }
     var exist = cart.find(checkproduct);
   }
-  // console.log("exist  " + exist)
+
   const AddtoCart = () => {
     exist ??
       dispatch({
@@ -109,9 +109,7 @@ const Detailproduct = ({
           <ProductInfo>
             <Producprice>${price}</Producprice>
 
-            <Cart onClick onClick={AddtoCart}>
-              Add to Cart
-            </Cart>
+            <Cart>Add to Cart</Cart>
           </ProductInfo>
         </Producholder>
         <h4>Over View</h4>
@@ -119,7 +117,7 @@ const Detailproduct = ({
         <h4>Category</h4>
         <Productdisc>{category}</Productdisc>
       </Detail>
-      <div>
+      {/* <div>
         <h4>similar category</h4>
         <div>
           {newproduct.map((products) => (
@@ -139,7 +137,7 @@ const Detailproduct = ({
             </Link>
           ))}
         </div>
-      </div>
+      </div> */}
     </Detailholder>
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+
 const Footerstyled = styled.div``;
 const Top = styled.div`
   background-color: #8aa85d;
@@ -29,7 +30,7 @@ function Footer() {
     <Footerstyled>
       <Top>
         <Anchor href="https://www.yohannesweb.com/">
-          Created yohannes Areda
+          Created by yohannes Areda
         </Anchor>
         <Logo src="https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-512.png"></Logo>
       </Top>

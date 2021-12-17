@@ -16,22 +16,16 @@ const Shop = styled.div`
   text-decoration: none;
   color: black;
 `;
-const Explore = styled.div`
-  font-size: 30px;
-  font-weight: 500;
-  background-color: lightpink;
-  display: inline-block;
-  width: 300px;
-  text-align: center;
-`;
+
 const ShopNow = styled.div`
-  font-size: 50px;
-  font-weight: 800;
+  font-size: 60px;
+  font-weight: 400;
   padding: 150px 0 0 0;
-  &:hover {
-    color: brown;
-    text-decoration: underline;
-  }
+  color: red;
+  // &:hover {
+  //   color: brown;
+  //   text-decoration: underline;
+  // }
 `;
 
 function Home() {
@@ -42,14 +36,12 @@ function Home() {
           <ShopNow>Shop Now</ShopNow>
         </Link>
         <p>
-          Fake store rest API for your e-commerce or <br /> shopping website
-          prototype
+          Wishing you and your family peace, health, happiness, and prosperity
+          in the coming year. <br /> Merry Christmas and
+          <span style={{ color: "red" }}> Happy Shopping</span>
         </p>
-        <Link to="/explore" style={{ textDecoration: "none", color: "black" }}>
-          <Explore>Explore</Explore>
-        </Link>
       </Div>
-      <IMG src="https://fakestoreapi.com/icons/intro.svg"></IMG>
+      <IMG src="https://smart-retailer.com/wp-content/uploads/Holiday-Couple.jpg"></IMG>
     </Shop>
   );
 }

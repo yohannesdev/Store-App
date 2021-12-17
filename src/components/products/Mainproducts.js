@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { getallproducts, productsByCategory } from "../../utils/products";
 import Productlist from "./Productlist";
 import { Container, Row, Col } from "react-bootstrap";
-import Category from "./Category";
 import SearchIcon from "@material-ui/icons/Search";
 const Mainproducts = () => {
   const [products, setProducts] = useState([]);
@@ -10,7 +9,7 @@ const Mainproducts = () => {
   const [error, seterror] = useState(false);
   const [searchcategory, setsearchcategory] = useState("");
   useEffect(() => {
-    //    getallproducts()
+    // left getallproducts() here to try to use it again
     fetch("/product.json")
       .then((res) => res.json())
       .then((product) => {
@@ -40,21 +39,9 @@ const Mainproducts = () => {
         seterror(true);
       });
   };
-  const SortAsce = (a) => {
-    if (a == "a-z") {
-      return products.sort((a, b) => (a.title > b.title ? 1 : -1));
-    } else if (a == "z-a") {
-      return products.sort((a, b) => (a.title < b.title ? 1 : -1));
-    } else if (a == "lowest") {
-      return products.sort((a, b) => (a.price > b.price ? 1 : -1));
-    } else if (a == "highest") {
-      return products.sort((a, b) => (a.price < b.price ? 1 : -1));
-    }
-  };
-  console.log(error);
+
   return (
     <div>
-      <Category category={searchBycategory} sortasce={SortAsce} />
       <div
         style={{
           margin: "10px 10px",
@@ -76,6 +63,7 @@ const Mainproducts = () => {
         <Row>
           {loading && <h1>loading...</h1>}
           {error && <h1> Something went wrong please try again</h1>}
+
           {products.length == 0 && !loading && !error && (
             <h1>Items not found</h1>
           )}
